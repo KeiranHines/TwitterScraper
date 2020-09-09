@@ -1,9 +1,10 @@
-from src.framework.IHandler import IHandler
 from src.framework import AbstractDataClass
+from src.framework.abstract_handler import IHandler
 
 
 class StdOutHandler(IHandler):
     """ Handles new Abstract data messages by printing them to stdout. """
+
     def __init__(self):
         super().__init__()
 

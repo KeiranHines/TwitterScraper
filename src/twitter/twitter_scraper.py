@@ -9,8 +9,8 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from src.framework import AbstractScraper
 from src.framework.exceptions import NoUserFoundException
-from src.framework import AbstractScraper, IHandler
 from . import TweetData
 
 
@@ -19,20 +19,6 @@ class TwitterScraper(AbstractScraper):
 
     def __init__(self, target: str):
         super(TwitterScraper, self).__init__(target)
-
-    def register_handler(self, handler: IHandler):
-        """ Registers a handler to process any new tweets.
-        :param handler: IHandler - The handler to register for updates.
-        :return: None
-        """
-        self.handlers.add(handler)
-
-    def remove_handler(self, handler: IHandler):
-        """ Removes an existing handler from the twitter to be updated when a new tweet is processed.
-        :param handler: IHandler - The handler to remove.
-        :return: None
-        """
-        self.handlers.remove(handler)
 
     def get_latest(self, count: int = -1):
         """ Gets the latest N tweets from the user  where N is the count, and broadcasts them to all twitter.
@@ -76,9 +62,7 @@ class TwitterScraper(AbstractScraper):
                     if (timestamp is not None and data.timestamp <= timestamp) or -1 < limit <= count:
                         driver.close()
                         return
-                    # Notified any twitter there is a new tweet to process
-                    for handler in self.handlers:
-                        handler.process(data)
+                    self._notify_handlers(data)
                 except NoSuchElementException:
                     logging.warning("Could not process tweet, tweet is invalid")
                 count += 1

@@ -1,10 +1,11 @@
-from src.twitter import TwitterScraper
-from src.framework import AbstractScraper
-from src.handlers import StdOutHandler
-import sched
-import time
 import argparse
 import logging
+import sched
+import time
+
+from src.framework import AbstractScraper
+from src.handlers import StdOutHandler
+from src.twitter import TwitterScraper
 
 
 def run_on_schedule(sc, seconds, scrapper: AbstractScraper):

@@ -1,3 +1,3 @@
-from .IHandler import IHandler
-from .AbstractDataClass import AbstractDataClass
-from .AbstractScraper import AbstractScraper
+from .abstract_data_class import AbstractDataClass
+from .abstract_handler import IHandler
+from .abstract_scraper import AbstractScraper
