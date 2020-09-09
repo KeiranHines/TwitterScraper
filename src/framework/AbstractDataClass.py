@@ -6,6 +6,7 @@ from datetime import datetime
 @dataclass
 class AbstractDataClass(ABC):
     """ Base data class for tracking messages scraper from various sources. """
+
     def __init__(self, author: str, content: str, timestamp: datetime):
         self.author = author
         self.content = content
@@ -36,4 +37,4 @@ class AbstractDataClass(ABC):
         self._timestamp = timestamp
 
     def __str__(self):
-        return "| " + str(self.timestamp) + " | " + self.author + " | " + self.content
+        return str(self.timestamp) + ", " + self.author + ", " + self.content

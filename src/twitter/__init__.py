@@ -1,2 +1,2 @@
 from .TweetData import TweetData
-from .TwitterScaper import TwitterScraper
+from .TwitterScraper import TwitterScraper
