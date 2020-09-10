@@ -21,5 +21,12 @@ src: All source
     * Usage: tweet_logger.py -u <user> -i <initial> -m <Minutes>
     * Defaults:
         * If -i is not specified default to 5.
-        * If -m is not specified default to 10.  
+        * If -m is not specified default to 10.
+* apps/rest_api.py
+    * Description: A simple webserver that will provide an update of users tweets, updating every M minutes
+    * Usage: tweet_logger.py -u <users> -i <initial> -m <Minutes>
+    * Multiple users can be specified with -u <user1> <user2> 
+    * Defaults:
+        * If -i is not specified default to 5.
+        * If -m is not specified default to 10.
     

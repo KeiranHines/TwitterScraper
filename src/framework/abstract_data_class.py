@@ -1,6 +1,7 @@
 from abc import ABC
 from dataclasses import dataclass
 from datetime import datetime
+import json
 
 
 @dataclass
@@ -38,3 +39,9 @@ class AbstractDataClass(ABC):
 
     def __str__(self):
         return str(self.timestamp) + ", " + self.author + ", " + self.content
+
+    def as_dict(self):
+        return dict(author=self.author, content=self.content, timestamp=str(self.timestamp))
+
+    def as_json(self):
+        return json.dumps(self.as_dict())
