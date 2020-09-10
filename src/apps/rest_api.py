@@ -58,6 +58,7 @@ def _setup_args():
     req = parser.add_argument_group('required arguments')
     req.add_argument('-u', '--users', type=str, nargs='+', help='The user to follow', required=True)
     parser.add_argument('-i', '--initial', type=int, default='5', help='Initial tweets to load (>= 0)')
+    parser.add_argument('-p', '--port', type=int, default='5000', help='webserver port (0 to 65353)')
     parser.add_argument('-r', '--refresh', type=int, default='10', help='Refresh interval (minutes > 0)')
 
     return vars(parser.parse_args())
@@ -71,6 +72,9 @@ if __name__ == '__main__':
     minutes = args['refresh']
     if minutes <= 0:
         raise argparse.ArgumentTypeError("Refresh period is less that every minute")
+    port = args['port']
+    if port < 0 or port > 65353:
+        raise argparse.ArgumentTypeError("Invalid port")
     s = minutes * 60
 
     setup_web_server(True)
@@ -92,4 +96,4 @@ if __name__ == '__main__':
                 scheduler.enter(s, 1, run_on_schedule, (scheduler, s, tweetScraper))
             else:
                 logging.info("User %s already loaded", user)
-        app.run(use_reloader=False)
+        app.run(use_reloader=False, port=port)
