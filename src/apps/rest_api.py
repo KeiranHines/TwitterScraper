@@ -83,8 +83,7 @@ if __name__ == '__main__':
 
     # No max-workers specified, using CPU thread count for proof of concept
     with ThreadPoolExecutor() as executor:
-        for u in args['users']:
-            user = u.lower()
+        for user in args['users']:
             if user not in userHandlers:
                 tweetScraper = TwitterScraper(target=user)
                 handler = CollectorHandler()
