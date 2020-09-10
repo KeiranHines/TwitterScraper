@@ -1,6 +1,15 @@
 # Proof of concept web scraper
 
-## Directory Structure
+## Requirements ##
+Python 3 required, tested with Python 3.8.5
+
+Third-party Python modules listed in requirements.txt and can be installed using `pip3 install -r requirements.txt`
+
+`Firefox` is required to be installed and the `Firefox GeckoDriver` installed and accessible in the `PATH` environment variable.
+ * GeckoDriver can be downloaded [here](https://github.com/mozilla/geckodriver/releases)
+ 
+
+## Directory Structure ##
 <pre>
 src: All source
 |
